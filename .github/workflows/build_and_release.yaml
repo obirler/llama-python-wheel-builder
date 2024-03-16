@@ -58,9 +58,9 @@ jobs:
         run: |
           $matrix = @{
               'os' = [windows-latest]
-              'pyver' = "3.11"
-              'cuda' = "12.1.1"
-              'avxver' = "AVX2", "AVX512"
+              'pyver' = ["3.11"]
+              'cuda' = ["12.1.1"]
+              'avxver' = ["AVX2", "AVX512"]
           }
           
           if ($env:CONFIGIN -ne 'Default') {$env:CONFIGIN.split(';').foreach({$matrix[$_.split(':')[0]] = $_.split(':')[1].split(',')})}
