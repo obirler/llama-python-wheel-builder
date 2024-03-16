@@ -57,7 +57,7 @@ jobs:
         id: set-matrix
         run: |
           $matrix = @{
-              'os' = ["windows-latest", "ubuntu-latest"]
+              'os' = ['windows-latest', 'ubuntu-latest']
               'pyver' = ["3.11"]
               'cuda' = ["12.1.1"]
               'avxver' = ["AVX2", "AVX512"]
