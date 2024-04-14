@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version tag of llama-cpp-python to build: v0.2.56'
-        default: 'v0.2.56'
+        description: 'Version tag of llama-cpp-python to build: v0.2.61'
+        default: 'v0.2.61'
         required: true
         type: string
       config:
@@ -21,8 +21,8 @@ on:
   workflow_call:
     inputs:
       version:
-        description: 'Version tag of llama-cpp-python to build: v0.2.56'
-        default: 'v0.2.56'
+        description: 'Version tag of llama-cpp-python to build: v0.2.61'
+        default: 'v0.2.61'
         required: true
         type: string
       config:
@@ -57,7 +57,6 @@ jobs:
         id: set-matrix
         run: |
           $matrix = @{
-              os = 'ubuntu-20.04', 'windows-latest'
               'pyver' = "3.11.8", "3.10"
               'cuda' = "11.8.0", "12.1.0"
               'avxver' = "AVX2", "AVX512"
@@ -75,9 +74,9 @@ jobs:
           Write-Output ('matrix=' + $matrixOut) >> $env:GITHUB_OUTPUT
           
   build_wheels:
-    name: Build Wheel ${{ matrix.os }} ${{ matrix.pyver }} ${{ matrix.cuda }} ${{ matrix.avxver }}
+    name: Build Wheel windows-latest ${{ matrix.pyver }} ${{ matrix.cuda }} ${{ matrix.avxver }}
     needs: define_matrix
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     strategy:
       matrix: ${{ fromJSON(needs.define_matrix.outputs.matrix) }}
     defaults:
